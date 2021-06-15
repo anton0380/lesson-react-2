@@ -37,7 +37,7 @@ export default class GotService {
         return this.getResource(`/books/${id}`);
     }
 
-    _transformNoData(info) {
+    _transformNoData = (info) => {
         for (let key in info) {
             if (info[key] === '') {
                 info[key] = 'no data';
@@ -46,14 +46,7 @@ export default class GotService {
         return info;
     }
 
-    _transformCharacter(char) {
-        return {
-            name: char.name,
-            gender: char.gender,
-            born: char.born,
-            died: char.died,
-            culture: char.culture
-        };
+    _transformCharacter = (char) => {
         return this._transformNoData({
             name: char.name,
             gender: char.gender,
@@ -63,7 +56,7 @@ export default class GotService {
         });
     }
 
-    _transformHouse(house) {
+    _transformHouse = (house) => {
         return this._transformNoData({
             name: house.name,
             region: house.region,
@@ -74,7 +67,7 @@ export default class GotService {
         });
     }
 
-    _transformBook(book) {
+    _transformBook = (book) => {
         return this._transformNoData({
             name: book.name,
             numberOfPages: book.numberOfPages,
