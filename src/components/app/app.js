@@ -5,51 +5,67 @@ import RandomChar from '../randomChar';
 import ItemList from '../itemList';
 import CharDetails from '../charDetails';
 import { Button } from 'reactstrap';
+import ErrorMessage from '../errorMessage';
 
 
 class App extends Component {
     state = {
-        viewChar: true
+        showRandomChar: true,
+        selectedChar: null,
+        error: false
     }
 
-    onToggleChar = () => {
-        console.log('click-click');
-        console.log(this.state.viewChar);
+    componentDidCatch() {
+        console.log('error');
         this.setState({
-            viewChar: !this.state.viewChar
+            error: true
+        });
+    }
+
+    toggleRandomChar = () => {
+        this.setState((state) => {
+            return {
+                showRandomChar: !state.showRandomChar
+            }
         })
 
     }
+
+    onCharSelected = (id) => {
+        this.setState({
+            selectedChar: id
+        });
+    }
+
     render() {
-        const {viewChar} = this.state;
-        let charInfo = null;
-        if (viewChar) {
-            charInfo = (
-                    <Row>
-                        <Col lg={{size: 5, offset: 0}}>
-                            <RandomChar/>
-                        </Col>
-                    </Row>
-                )
+        const char = this.state.showRandomChar ? <RandomChar/> : null;
+
+        if (this.state.error) {
+            return <ErrorMessage/>
         }
+
         return (
             <> 
                 <Container>
                     <Header />
                 </Container>
                 <Container>
-                    {charInfo}
                     <Row>
-                        <Col lg={{ size: 5, offset: 0 }}>
-                            <Button color="primary" onClick={this.onToggleChar} style={{ marginBottom: '1rem' }}>Toggle character</Button>
+                        <Col lg={{size: 5, offset: 0}}>
+                            {char}
                         </Col>
                     </Row>
                     <Row>
+                        <Col lg={{ size: 5, offset: 0 }}>
+                            <Button color="primary" onClick={this.toggleRandomChar} style={{ marginBottom: '40px' }}>Toggle character</Button>
+                        </Col> 
+                    </Row>
+                    <Row>
                         <Col md='6'>
-                            <ItemList />
+                            <ItemList onCharSelected={this.onCharSelected}/>
                         </Col>
                         <Col md='6'>
-                            <CharDetails />
+                            <CharDetails charId={this.state.selectedChar}/>
                         </Col>
                     </Row>
                 </Container>

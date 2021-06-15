@@ -37,6 +37,15 @@ export default class GotService {
         return this.getResource(`/books/${id}`);
     }
 
+    _transformNoData(info) {
+        for (let key in info) {
+            if (info[key] === '') {
+                info[key] = 'no data';
+            }
+        }
+        return info;
+    }
+
     _transformCharacter(char) {
         return {
             name: char.name,
@@ -44,27 +53,34 @@ export default class GotService {
             born: char.born,
             died: char.died,
             culture: char.culture
-        }
+        };
+        return this._transformNoData({
+            name: char.name,
+            gender: char.gender,
+            born: char.born,
+            died: char.died,
+            culture: char.culture
+        });
     }
 
     _transformHouse(house) {
-        return {
+        return this._transformNoData({
             name: house.name,
             region: house.region,
             words: house.words,
             titles: house.titles,
             overlord: house.overlord,
             ancestralWeapons: house.ancestralWeapons
-        }
+        });
     }
 
     _transformBook(book) {
-        return {
+        return this._transformNoData({
             name: book.name,
             numberOfPages: book.numberOfPages,
             publiser: book.publiser,
             released: book.released
-        }
+        });
     }
 }
 
