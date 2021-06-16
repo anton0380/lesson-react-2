@@ -13,12 +13,17 @@ export default class GotService {
 
     async getAllCharacters() {
         const res = await this.getResource('/characters?page=5&pageSize=10');
-        return res.map(this._transformCharacter);
+        // return res.map(this._transformCharacter);
+        const answ = [];
+        res.forEach((element, i) => {
+            answ.push(this._transformCharacter(element, i + 41));
+        });
+        return answ;
     }
 
     async getCharacter(id) {
         const character = await this.getResource(`/characters/${id}`);
-        return this._transformCharacter(character);
+        return this._transformCharacter(character, id);
     }
 
     getAllHouses() {
@@ -46,13 +51,14 @@ export default class GotService {
         return info;
     }
 
-    _transformCharacter = (char) => {
+    _transformCharacter = (char, id) => {
         return this._transformNoData({
             name: char.name,
             gender: char.gender,
             born: char.born,
             died: char.died,
-            culture: char.culture
+            culture: char.culture,
+            key: id
         });
     }
 
