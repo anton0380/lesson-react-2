@@ -54,6 +54,7 @@ class App extends Component {
                         </Col> 
                     </Row>
                     <CharacterPage/>
+                    
                 </Container>
             </>
         );
@@ -61,3 +62,4 @@ class App extends Component {
 };
 
 export default App;
+
