@@ -97,7 +97,13 @@ class App extends Component {
                         )}/> */}
 
                         <Route path='/books/:id' render={
-                            () => <BooksItem/>
+                                ({match, location, history}) => {
+                                    console.log(match);
+                                    console.log(location);
+                                    console.log(history);
+                                    const {id} = match.params;
+                                return <BooksItem bookId={id}/>
+                            }
                         }/>
                         
                     </Container>
