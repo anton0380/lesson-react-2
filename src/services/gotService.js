@@ -69,7 +69,7 @@ export default class GotService {
             words: house.words,
             titles: house.titles,
             overlord: house.overlord,
-            ancestralWeapons: house.ancestralWeapons
+            ancestralWeapons: house.ancestralWeapons,
         });
     }
 
@@ -78,7 +78,7 @@ export default class GotService {
             name: book.name,
             numberOfPages: book.numberOfPages,
             publiser: book.publiser,
-            released: book.released
+            released: book.released,
         });
     }
 }
