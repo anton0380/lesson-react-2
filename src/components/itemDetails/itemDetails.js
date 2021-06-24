@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './charDetails.css';
+import './itemDetails.css';
 import gotService from '../../services/gotService';
 import Spinner from '../spinner';
 
@@ -16,23 +16,23 @@ export {
     Field
 }
 
-export default class CharDetails extends Component {
+export default class ItemDetails extends Component {
     gotService = new gotService();
     state = {
         char: null
     }
 
     componentDidMount() {
-        this.updateChar();
+        this.updateItem();
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.charId !== prevProps.charId) {
-            this.updateChar(); 
+            this.updateItem(); 
         }
     }
 
-    updateChar() {
+    updateItem() {
         const {charId} = this.props;
         if (!charId) {
             return;

@@ -4,10 +4,10 @@ import Header from '../header';
 import RandomChar from '../randomChar';
 import { Button } from 'reactstrap';
 import ErrorMessage from '../errorMessage';
-import CharacterPage from '../characterPage';
+import {CharacterPage, BooksPage, HousesPage} from '../pages';
 
 import ItemList from '../itemList';
-import CharDetails from '../charDetails';
+import ItemDetails from '../itemDetails';
 import gotService from '../../services/gotService';
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
@@ -67,19 +67,7 @@ class App extends Component {
                         </Row>
                         <Route path='/' exact component={() => <h1>Welcome to GOT DB</h1>}/>
                         <Route path='/characters' component={CharacterPage}/>
-                        <Route path='/houses' component={() => (
-                            <Row>
-                                <Col md='6'>
-                                    <ItemList 
-                                        onItemSelected={this.onItemSelected}
-                                        getData={this.gotService.getAllHouses}
-                                        renderItem={(item) => item.name}/>
-                                </Col> 
-                                <Col md='6'>
-                                    <CharDetails charId={this.state.selectedChar}/>
-                                </Col>
-                            </Row>
-                        )}/>
+                        <Route path='/houses' component={HousesPage}/>
                         {/* <Route path='/books' exact component={() => (
                             <Row>
                                 <Col md='6'>
@@ -91,7 +79,7 @@ class App extends Component {
 
                                 </Col> 
                                 <Col md='6'>
-                                    <CharDetails charId={this.state.selectedChar}/>
+                                    <ItemDetails charId={this.state.selectedChar}/>
                                 </Col>
                             </Row>
                         )}/> */}
