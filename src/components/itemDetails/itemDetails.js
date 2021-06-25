@@ -27,17 +27,17 @@ export default class ItemDetails extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.charId !== prevProps.charId) {
+        if (this.props.itemId !== prevProps.itemId) {
             this.updateItem(); 
         }
     }
 
     updateItem() {
-        const {charId} = this.props;
-        if (!charId) {
+        const {itemId, getData} = this.props;
+        if (!itemId) {
             return;
         }
-        this.gotService.getCharacter(charId)
+        getData(itemId)
             .then((char) => {
                 this.setState({char});
             })

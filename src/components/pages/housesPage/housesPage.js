@@ -39,7 +39,7 @@ export default class HousesPage extends Component {
         )
 
         const itemDetails = (
-            <ItemDetails charId={this.state.selectedItem}>
+            <ItemDetails itemId={this.state.selectedItem}>
                 <Field field='gender' label='Gender' />
                 <Field field='born' label='Born' />
                 <Field field='died' label='Died' />

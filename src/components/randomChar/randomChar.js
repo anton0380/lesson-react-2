@@ -28,7 +28,7 @@ export default class RandomChar extends Component {
     }
 
     componentDidUpdate() {
-        console.log('updating');
+        // console.log('updating');
     }
 
     componentDidCatch() {
@@ -60,7 +60,7 @@ export default class RandomChar extends Component {
     }
 
     render() {
-        console.log('render');
+        // console.log('render');
         const { char, loading, error} = this.state;
 
         const errorMessage = error ? <ErrorMessage/> : null;

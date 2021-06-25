@@ -79,7 +79,7 @@ class App extends Component {
 
                                 </Col> 
                                 <Col md='6'>
-                                    <ItemDetails charId={this.state.selectedChar}/>
+                                    <ItemDetails itemId={this.state.selectedChar}/>
                                 </Col>
                             </Row>
                         )}/> */}

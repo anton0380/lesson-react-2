@@ -6,6 +6,8 @@ export default class BooksItem extends Component {
     gotService = new gotService();
 
     render() {
+        console.log(' item id =', this.props.bookId);
+        console.log()
         return (
             <ItemDetails
                 itemId={this.props.bookId}
